@@ -1,0 +1,21 @@
+{
+  "name": "nyltevaluator",
+  "version": "0.0.1",
+  "description": "A new, modern, GraphQL & Node-based backend for NYLT Evaluator. Based on CampHub Online.",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
