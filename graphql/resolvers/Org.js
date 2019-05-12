@@ -1,5 +1,7 @@
 const Org = require('../../models/Org');
 const Scout = require('../../models/Scout');
+const Umbrella = require('../../models/Umbrella');
+const Utils = require('../../utils');
 
 module.exports = {
     Query: {
@@ -19,34 +21,29 @@ module.exports = {
         }
     },
     Mutation: {
-        createOrg: (root, {name}) => {
+        createOrg: (root, {name, umbrellaId}) => {
             const newOrg = new Org({
-                name
+                name,
+                umbrellaId
             });
             return new Promise(((resolve, reject) => newOrg.save((err, res) => err ? reject(err) : resolve(res))));
         },
 
         deleteOrg: (root, args) => {
-            return new Promise(((resolve, reject) => {
-                Org.findOneAndDelete({_id: args._id}).exec((err, res) => {
-                    if (err) reject(err); else {
-                        if (args.deleteMembers) {
-                            Scout.deleteMany({orgId: args._id}).exec(err => {
-                                err ? reject(err) : resolve(res);
-                            });
-                        } else {
-                            resolve(res);
-                        }
-                    }
-
-                });
-            }));
+            return Utils.deleteOrgAndMembers(args._id, args.deleteMembers);
         }
     },
     Org: {
         scouts: org => {
             return new Promise(((resolve, reject) => {
                 Scout.find({orgId: org._id}).exec((err, res) => {
+                    err ? reject(err) : resolve(res);
+                });
+            }));
+        },
+        umbrella: org => {
+            return new Promise(((resolve, reject) => {
+                Umbrella.findOne({_id: org.umbrellaId}).exec((err, res) => {
                     err ? reject(err) : resolve(res);
                 });
             }));

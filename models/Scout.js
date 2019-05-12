@@ -13,6 +13,10 @@ const ScoutSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    team: {
+        type: String,
+        required: false
+    },
     dateOfBirth: {
         type: Date,
         required: false

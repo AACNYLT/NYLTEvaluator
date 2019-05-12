@@ -2,7 +2,9 @@ module.exports = `
     type Org {
         _id: String!
         name: String!
+        umbrellaId: String!
         scouts: [Scout]
+        umbrella: Umbrella
     }
     
     type Query {
@@ -11,8 +13,8 @@ module.exports = `
     }
     
     type Mutation {
-        createOrg(name: String!): Org
-        editOrg(_id: String!, name: String!): Org
+        createOrg(name: String!, umbrellaId: String!): Org
+        editOrg(_id: String!, name: String!, umbrellaId: String!): Org
         deleteOrg(_id: String!, deleteMembers: Boolean): Org
     }
 `;
