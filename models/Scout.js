@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
 const ScoutSchema = new mongoose.Schema({
-    id: {
+    orgId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     firstName: {
         type: String,

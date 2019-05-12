@@ -19,10 +19,27 @@ module.exports = {
         }
     },
     Mutation: {
-        createScout: (root, {id, firstName, lastName, dateOfBirth, gender, username, password, isEnabled}) => {
+        createScout: (root, {orgId, firstName, lastName, dateOfBirth, gender, username, password, isEnabled}) => {
             password = password ? crypto.createHash('sha256').update(password).digest('hex') : null;
-            const newScout = new Scout({id, firstName, lastName, dateOfBirth, gender, username, password, isEnabled});
+            const newScout = new Scout({
+                orgId,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                username,
+                password,
+                isEnabled
+            });
             return new Promise(((resolve, reject) => newScout.save((err, res) => err ? reject(err) : resolve(res))));
+        },
+
+        deleteScout: (root, args) => {
+            return new Promise(((resolve, reject) => {
+                Scout.findOneAndDelete(args).exec((err, res) => {
+                    err ? reject(err) : resolve(res);
+                });
+            }));
         }
     }
 };

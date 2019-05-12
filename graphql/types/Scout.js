@@ -1,6 +1,7 @@
 module.exports = `
     type Scout {
-        id: String!
+        _id: String!
+        orgId: String!
         firstName: String!
         lastName: String!
         dateOfBirth: String
@@ -10,13 +11,13 @@ module.exports = `
     }
     
     type Query {
-        scout(id: String!): Scout
+        scout(_id: String!): Scout
         scouts: [Scout]
     }
     
     type Mutation {
-        createScout(id: String!, firstName: String!, lastName: String!, dateOfBirth: String, gender: String, username: String password: String, isEnabled: Boolean!): Scout
-        editScout(id: String!, firstName: String!, lastName: String!, dateOfBirth: String, gender: String, username: String, password: String, isEnabled: Boolean!): Scout
-        deleteScout(id: String!, firstName: String!, lastName: String!, dateOfBirth: String, gender: String, username: String, isEnabled: Boolean!): Scout
+        createScout(orgId: String!, firstName: String!, lastName: String!, dateOfBirth: String, gender: String, username: String password: String, isEnabled: Boolean!): Scout
+        editScout(_id: String!, orgId: String!, firstName: String!, lastName: String!, dateOfBirth: String, gender: String, username: String, password: String, isEnabled: Boolean!): Scout
+        deleteScout(_id: String!): Scout
     }
 `;

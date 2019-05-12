@@ -15,7 +15,9 @@ process.env.DB_URL = 'mongodb://localhost:27017/admin';
 mongoose.connect(process.env.DB_URL, {
     useCreateIndex: true,
     useNewUrlParser: true
-}).then(() => console.log('MongoDB connected')).catch(err => console.error(err));
+}).then(() => console.log('MongoDB connected')).catch(err => {
+    throw new Error(err);
+});
 
 app.use('/graphql', expressGraphQL({
     schema,
