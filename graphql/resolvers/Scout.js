@@ -52,6 +52,6 @@ module.exports = {
                     err ? reject(err) : resolve(res);
                 });
             }));
-        }
+        },
     }
 };

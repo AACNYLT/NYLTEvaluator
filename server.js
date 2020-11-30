@@ -19,7 +19,7 @@ mongoose.connect(process.env.DB_URL, {
     throw new Error(err);
 });
 
-app.use('/graphql', expressGraphQL({
+app.use('/graphql/:test', expressGraphQL({
     schema,
     graphiql: true
 }));
